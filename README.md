@@ -43,14 +43,14 @@ import multiprocessing
 * The data needs to be prepared into a tsv as follows: 
 * Bert requires a column of a single character (a), reasoning why is unclear
 ```python
-train_df = pd.read_csv('data/Twitter_Corpus_train.csv', header=None)
+train_df = pd.read_csv('data/Twitter_Corpus_train.txt', header=None)
 # convert to BERT friendly structure
 train_df_bert = pd.DataFrame({
     'id': range(len(train_df)),
-    'label': train_df[0],
+    'label': train_df[1],
     'alpha': ['a'] * train_df.shape[0],
-    'text_a': train_df[1].replace(r'\n', ' ', regex=True),
-    'text_b': train_df[1].replace(r'\n', ' ', regex=True)
+    'text_a': train_df[2].replace(r'\n', ' ', regex=True),
+    'text_b': train_df[3].replace(r'\n', ' ', regex=True)
 })
 
 train_df_bert.to_csv('data/train.tsv', sep='\t', index=False, header=False)
